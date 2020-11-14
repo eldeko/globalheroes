@@ -16,6 +16,5 @@ namespace GlobalHeroes.Factories
 
             return returnList;
         }
-
     }
 }

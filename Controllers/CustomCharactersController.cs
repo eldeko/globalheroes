@@ -1,7 +1,6 @@
 ﻿using GlobalHeroes.Entities;
 using GlobalHeroes.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -27,14 +26,20 @@ namespace GlobalHeroes.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            return Ok(_charactersService.GetCustomCharacterById(id));
+            var res = _charactersService.GetCustomCharacterById(id);
+
+            if (res != null)
+            return Ok();
+
+            return NoContent();
         }
 
         // POST api/<CharactersController>
         [HttpPost]
-        public void Post([FromBody] Character character)
+        public IActionResult Post([FromBody] Character character)
         {
-            _charactersService.AddCharacter(character);
+           _charactersService.AddCharacter(character);
+            return Created("Ok", character);
         }
 
         // PUT api/<CharactersController>/5

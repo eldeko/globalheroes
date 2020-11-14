@@ -52,8 +52,8 @@ namespace GlobalHeroes.Services
         }
 
         public Character GetCustomCharacterById(int id)
-        {
-           return  _customCharactersRepository.GetCharacterById(id);
+        {var res = _customCharactersRepository.GetCharacterById(id);
+            return res;
         }
 
         public async Task SaveCharacterAsync(Character character)
