@@ -119,6 +119,8 @@ C:\Repos\GlobalHeroes\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders
 C:\Repos\GlobalHeroes\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Physical.dll
 C:\Repos\GlobalHeroes\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileSystemGlobbing.dll
 C:\Repos\GlobalHeroes\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+C:\Repos\GlobalHeroes\bin\Debug\netcoreapp3.1\Microsoft.Graph.dll
+C:\Repos\GlobalHeroes\bin\Debug\netcoreapp3.1\Microsoft.Graph.Core.dll
 C:\Repos\GlobalHeroes\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
 C:\Repos\GlobalHeroes\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Repos\GlobalHeroes\bin\Debug\netcoreapp3.1\RestSharp.dll
@@ -126,6 +128,7 @@ C:\Repos\GlobalHeroes\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
 C:\Repos\GlobalHeroes\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Repos\GlobalHeroes\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Repos\GlobalHeroes\bin\Debug\netcoreapp3.1\System.Text.Json.dll
+C:\Repos\GlobalHeroes\obj\Debug\netcoreapp3.1\GlobalHeroes.csprojAssemblyReference.cache
 C:\Repos\GlobalHeroes\obj\Debug\netcoreapp3.1\GlobalHeroes.AssemblyInfoInputs.cache
 C:\Repos\GlobalHeroes\obj\Debug\netcoreapp3.1\GlobalHeroes.AssemblyInfo.cs
 C:\Repos\GlobalHeroes\obj\Debug\netcoreapp3.1\GlobalHeroes.csproj.CoreCompileInputs.cache
@@ -153,6 +156,3 @@ C:\Repos\GlobalHeroes\obj\Debug\netcoreapp3.1\GlobalHeroes.csproj.CopyComplete
 C:\Repos\GlobalHeroes\obj\Debug\netcoreapp3.1\GlobalHeroes.dll
 C:\Repos\GlobalHeroes\obj\Debug\netcoreapp3.1\GlobalHeroes.pdb
 C:\Repos\GlobalHeroes\obj\Debug\netcoreapp3.1\GlobalHeroes.genruntimeconfig.cache
-C:\Repos\GlobalHeroes\obj\Debug\netcoreapp3.1\GlobalHeroes.csprojAssemblyReference.cache
-C:\Repos\GlobalHeroes\bin\Debug\netcoreapp3.1\Microsoft.Graph.dll
-C:\Repos\GlobalHeroes\bin\Debug\netcoreapp3.1\Microsoft.Graph.Core.dll

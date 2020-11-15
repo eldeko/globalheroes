@@ -2,12 +2,10 @@
 using GlobalHeroes.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace GlobalHeroes.Controllers
 {
     [ApiController]
-    [Route("[controller]")]    
+    [Route("[controller]")]
     public class CustomCharactersController : ControllerBase
     {
         private readonly ICharactersService _charactersService;
@@ -15,11 +13,11 @@ namespace GlobalHeroes.Controllers
         {
             _charactersService = charactersService;
         }
-        
-        [HttpGet("/[controller]")]       
+
+        [HttpGet("/[controller]")]
         public IActionResult Get()
         {
-            return Ok(_charactersService.GetAllCustomCharacters());           
+            return Ok(_charactersService.GetAllCustomCharacters());
         }
 
         // GET api/<CharactersController>/5
@@ -29,33 +27,37 @@ namespace GlobalHeroes.Controllers
             var res = _charactersService.GetCustomCharacterById(id);
 
             if (res != null)
-            return Ok(res);
+                return Ok(res);
 
-            return NoContent();
+            return NotFound();
         }
-
-        // POST api/<CharactersController>
+       
         [HttpPost]
         public IActionResult Post([FromBody] Character character)
         {
-           _charactersService.AddCharacter(character);
+            _charactersService.AddCharacter(character);
             return Created("Ok", character);
         }
-
-        // PUT api/<CharactersController>/5
+      
         [HttpPut("{id}")]
         public IActionResult Put([FromBody] Character character)
         {
-            if(character.id !=0)
-            _charactersService.UpadteCharacter(character);
+            if (character.id != 0)
+                _charactersService.UpadteCharacter(character);
             return Ok(character);
         }
-
-        // DELETE api/<CharactersController>/5
+        
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
-            _charactersService.DeleteCharacter(id);
+            var charac = _charactersService.GetCustomCharacterById(id);
+
+            if (charac != null)
+            {
+                _charactersService.DeleteCharacter(id);
+                return NoContent();
+            }
+            return NotFound();
         }
     }
 }
