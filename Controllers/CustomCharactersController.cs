@@ -29,7 +29,7 @@ namespace GlobalHeroes.Controllers
             var res = _charactersService.GetCustomCharacterById(id);
 
             if (res != null)
-            return Ok();
+            return Ok(res);
 
             return NoContent();
         }
@@ -44,10 +44,11 @@ namespace GlobalHeroes.Controllers
 
         // PUT api/<CharactersController>/5
         [HttpPut("{id}")]
-        public void Put([FromBody] Character character)
+        public IActionResult Put([FromBody] Character character)
         {
             if(character.id !=0)
             _charactersService.UpadteCharacter(character);
+            return Ok(character);
         }
 
         // DELETE api/<CharactersController>/5

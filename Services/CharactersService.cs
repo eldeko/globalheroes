@@ -52,7 +52,8 @@ namespace GlobalHeroes.Services
         }
 
         public Character GetCustomCharacterById(int id)
-        {var res = _customCharactersRepository.GetCharacterById(id);
+        {
+            var res = _customCharactersRepository.GetCharacterById(id);
             return res;
         }
 
