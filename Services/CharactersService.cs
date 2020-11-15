@@ -25,13 +25,16 @@ namespace GlobalHeroes.Services
 
         public void AddCharacter(Character character)
         {
-            var lastId = _customCharactersRepository.GetAllCharacters().Max(x => x.id);
-
             if (character.id == 0 || character.id == null)
             {
-                character.id = lastId + 1;
+                var nextAvailableId = _customCharactersRepository.GetAllCharacters().Max(x => x.id) + 1;
+                character.id = nextAvailableId;
+                _customCharactersRepository.AddCharacter(character);
             }
-            _customCharactersRepository.AddCharacter(character);
+            else
+            {
+                throw new Exception("Id of new object must be zero");
+            }            
         }
 
         public void DeleteCharacter(int id)

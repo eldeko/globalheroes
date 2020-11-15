@@ -1,6 +1,7 @@
 ﻿using GlobalHeroes.Entities;
 using GlobalHeroes.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace GlobalHeroes.Controllers
 {
@@ -35,8 +36,15 @@ namespace GlobalHeroes.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Character character)
         {
-            _charactersService.AddCharacter(character);
-            return Created("Ok", character);
+            try
+            {
+                _charactersService.AddCharacter(character);
+                return Created("Ok", character);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);           
+            }
         }
       
         [HttpPut("{id}")]
