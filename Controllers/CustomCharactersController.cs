@@ -1,6 +1,9 @@
 ﻿using GlobalHeroes.Entities;
 using GlobalHeroes.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
+using System.Text;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,11 +18,11 @@ namespace GlobalHeroes.Controllers
         {
             _charactersService = charactersService;
         }
-        
-        [HttpGet("/[controller]")]       
+
+        [HttpGet("/[controller]")]
         public IActionResult Get()
         {
-            return Ok(_charactersService.GetAllCustomCharacters());           
+            return Ok(_charactersService.GetAllCustomCharacters());
         }
 
         // GET api/<CharactersController>/5

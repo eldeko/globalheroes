@@ -1,8 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "C:\\Users\\DEKO\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\DEKO\\.nuget\\packages"
-    ]
-  }
-}
