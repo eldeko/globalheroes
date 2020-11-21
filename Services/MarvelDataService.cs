@@ -15,7 +15,7 @@ namespace GlobalHeroes.Services
         }
         public List<CharactersResponse> GetAllCharactersResponse()
         {
-            var res = _marvelHelper.GetAllCharacters();
+            var res = _marvelHelper.GetAllCharacters().Result;
 
             return res;
         }

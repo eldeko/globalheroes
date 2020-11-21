@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace GlobalHeroes.Helpers
 {
@@ -22,28 +23,45 @@ namespace GlobalHeroes.Helpers
             publicKey = config.Value.Keys.PublicKey;
             _client = new RestClient(baseURL);
         }
-
-        public List<CharactersResponse> GetAllCharacters()
+        
+        public async Task<List<CharactersResponse>> GetAllCharacters()
         {
-            var charactersResponseList = new List<CharactersResponse>();
+            int totalPages = GetTotalCountOfPages();
+           
+            var tasks = new List<Task<CharactersResponse>>();
+            var returnList = new List<CharactersResponse>();
 
-            var request = new RestRequest(baseURL+"characters");
-            var firstResponse = Execute<CharactersResponse>(request);
-            charactersResponseList.Add(firstResponse);
+            for (int i = 0; i <= totalPages; i++)
+            {
+               var request = new RestRequest(baseURL + "characters");
+                request.AddParameter("offset", i * 100, ParameterType.QueryString);
 
-          //  var totalPages = (int.Parse(firstResponse.Data.Total)/100) + 1;
+                var currentResponse = Task.Run(()=> Execute<RestRequest>(request));
 
-            //for (int i = 2; i < totalPages; i++)
-            //{
-            //    request = new RestRequest(baseURL + "characters");
-            //    request.AddParameter("offset", i*100, ParameterType.QueryString);
-            //    var currentResponse =  Execute<CharactersResponse>(request);
-            //    charactersResponseList.Add(currentResponse);
-            //}
-            return charactersResponseList;
+                tasks.Add(currentResponse);
+            }
+
+             await Task.WhenAll(tasks);
+
+            foreach (var task in tasks)
+            {
+                returnList.Add(task.Result); 
+            }
+
+            return returnList;
         }
 
-        private T Execute<T>(RestRequest request) where T : new()
+        private int GetTotalCountOfPages()
+        {          
+            var firstRequest = new RestRequest(baseURL + "characters");
+            AddDefaultParameters(firstRequest);
+            firstRequest.AddOrUpdateParameter("limit", 1, ParameterType.QueryString);
+            var FirstTask =  _client.Execute<CharactersResponse>(firstRequest);
+
+            return (int.Parse(FirstTask.Data.Data.Total) / 100) + 1;
+        }
+
+        private CharactersResponse Execute<T>(RestRequest request) where T : new()
         {
             string ts = DateTime.Now.Ticks.ToString();
 
@@ -51,7 +69,7 @@ namespace GlobalHeroes.Helpers
             request.AddParameter("apikey", publicKey, ParameterType.QueryString);
             request.AddParameter("hash", GenerateHash(ts, privateKey, publicKey), ParameterType.QueryString);
             request.AddParameter("limit", 100, ParameterType.QueryString);
-            var response = _client.Execute<T>(request);
+            var response = _client.Execute<CharactersResponse>(request);
 
             if (response.ErrorException != null)
             {
@@ -68,6 +86,18 @@ namespace GlobalHeroes.Helpers
             var generator = MD5.Create();
             byte[] bytesHash = generator.ComputeHash(bytes);
             return BitConverter.ToString(bytesHash).ToLower().Replace("-", String.Empty);
+        }
+
+        private RestRequest AddDefaultParameters(RestRequest request)
+        {
+            string ts = DateTime.Now.Ticks.ToString();
+
+            request.AddParameter("ts", ts, ParameterType.QueryString);
+            request.AddParameter("apikey", this.publicKey, ParameterType.QueryString);
+            request.AddParameter("hash", GenerateHash(ts, privateKey, publicKey), ParameterType.QueryString);
+            request.AddParameter("limit", 100, ParameterType.QueryString);
+            return request;
+
         }
     }
 }

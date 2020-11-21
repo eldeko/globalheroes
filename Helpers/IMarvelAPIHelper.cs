@@ -9,6 +9,6 @@ namespace GlobalHeroes.Helpers
 {
     public interface IMarvelAPIHelper
     {
-       List<CharactersResponse> GetAllCharacters();
+         Task<List<CharactersResponse>> GetAllCharacters();
     }
 }
