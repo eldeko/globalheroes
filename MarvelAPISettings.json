@@ -1,8 +1,8 @@
 {
   "MarvelAPISettings" : {
     "Keys": {
-      "PrivateKey": "093cefca62caa67702ec27dd438821e3a48b6420",
-      "PublicKey": "b2bef286e5dbc0868b20d78cb74708c1"
+      "PrivateKey": "Place Private Key",
+      "PublicKey": "Place Public Key"
     },
     "BaseURL": "http://gateway.marvel.com/v1/public/"
   }
