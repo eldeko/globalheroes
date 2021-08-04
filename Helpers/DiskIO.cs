@@ -15,6 +15,7 @@ namespace GlobalHeroes.Helpers
         {
             try
             {
+             ////////////////////////////////////////////// Damn. Refactor this to an env var.
                 using (StreamWriter file = File.CreateText("D:\\\\GlobalHeroes\\HeroesDB.json"))
                 {
                     JsonSerializer serializer = new JsonSerializer();              
